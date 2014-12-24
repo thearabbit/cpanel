@@ -1,0 +1,16 @@
+@extends(Config::get('cpanel::layout.master'))
+
+@section('css')
+@stop
+
+@section('toolbar')
+@stop
+
+@section('content')
+  <dl class="dl-horizontal">
+    $SHOW_FIELD$
+  </dl>
+@stop
+
+@section('js')
+@stop

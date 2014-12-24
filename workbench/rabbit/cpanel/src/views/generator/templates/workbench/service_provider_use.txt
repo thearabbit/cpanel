@@ -1,0 +1,4 @@
+namespace $NAMESPACE$;
+
+use $NAMESPACE$\Libraries\$PACKAGE_UC_WORDS$List;
+use Illuminate\Foundation\AliasLoader;

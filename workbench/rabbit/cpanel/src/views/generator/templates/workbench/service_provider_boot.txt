@@ -1,0 +1,2 @@
+$this->package('$BENCH$/$PACKAGE$');
+		include __DIR__ . '/../../routes.php';

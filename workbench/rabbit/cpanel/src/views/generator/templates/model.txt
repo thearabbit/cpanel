@@ -1,0 +1,12 @@
+<?php namespace $NAMESPACE$;
+
+class $MODEL_NAME$ extends \Eloquent
+{
+
+    // The database table used by the model.
+    protected $table = '$TABLE_NAME$';
+
+    // The primary key of database table.
+    protected $primaryKey  = 'id';
+
+}

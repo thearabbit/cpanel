@@ -1,0 +1,6 @@
+<?php
+
+// Home
+Breadcrumbs::register('$PACKAGE$.home.index', function ($breadcrumbs) {
+    $breadcrumbs->push('<i class="fa fa-home"></i> Home', route('$PACKAGE$.home.index'));
+});

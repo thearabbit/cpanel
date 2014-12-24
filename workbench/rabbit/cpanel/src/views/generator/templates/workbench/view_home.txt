@@ -1,0 +1,14 @@
+@extends(Config::get('cpanel::layout.master'))
+
+@section('css')
+@stop
+
+@section('toolbar')
+@stop
+
+@section('content')
+    <h1>{{ $data }}</h1>
+@stop
+
+@section('js')
+@stop

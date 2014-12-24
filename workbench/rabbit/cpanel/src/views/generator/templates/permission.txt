@@ -1,0 +1,6 @@
+'$RESOURCE_TITLE$' => [
+        '$PACKAGE$.$RESOURCE$.index' => 'List',
+        '$PACKAGE$.$RESOURCE$.create' => 'Create',
+        '$PACKAGE$.$RESOURCE$.edit' => 'Edit',
+        '$PACKAGE$.$RESOURCE$.destroy' => 'Delete'
+    ],

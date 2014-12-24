@@ -1,0 +1,29 @@
+<?php
+namespace $NAMESPACE$\Libraries;
+
+class $PACKAGE_UC_WORDS$List
+{
+    private $selectOne = ['' => '- Select One -'];
+
+    /**
+     * Testing
+     *
+     * @param bool $selectOne
+     * @return array
+     */
+    public function test($selectOne = true)
+    {
+        if (!$selectOne) {
+            $this->selectOne = [];
+        }
+        $dataTmp = [
+            'value 1' => 'Value 1',
+            'value 2' => 'Value 2',
+            'value 3' => 'Value 3',
+        ];
+
+        $data = $this->selectOne + $dataTmp;
+
+        return $data;
+    }
+}

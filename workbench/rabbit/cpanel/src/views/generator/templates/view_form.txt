@@ -1,0 +1,62 @@
+@extends(Config::get('cpanel::layout.master'))
+
+@section('css')
+@stop
+
+@section('toolbar')
+@stop
+
+@section('content')
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#general_tab" data-toggle="tab">General <i class="fa"></i></a></li>
+    </ul>
+
+    {{ Former::vertical_open()
+           ->action($form->action)
+           ->method($form->method)
+           ->id('bvForm') }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="general_tab">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        $FORM_OBJECT_TAB1$
+                    </div>
+                    <div class="col-md-6">
+
+                        $FORM_OBJECT_TAB2$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ Former::primary_submit($form->submit) }}
+        {{ Former::reset('Reset') }}
+    {{ Former::close() }}
+@stop
+
+@section('js')
+    <script>
+        // BV
+        var url="{{ URL::route('$RESOURCE_VALIDATOR_ROUTE$') }}";
+        var id = "{{ $$RESOURCE$->id }}";
+        $('#bvForm').bootstrapValidator({
+//            live: "disabled",
+            excluded: [':disabled'],
+            fields: {
+//                name: {
+//                    validators: {
+//                        notEmpty: {},
+//                        remote: {
+//                            type: 'POST',
+//                            url: url,
+//                            data: function (validator) {
+//                                return {id: id};
+//                            }
+//                        }
+//                    }
+//                }
+            }
+        });
+    </script>
+@stop

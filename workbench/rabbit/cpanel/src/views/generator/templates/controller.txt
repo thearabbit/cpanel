@@ -1,0 +1,172 @@
+<?php namespace $NAMESPACE$;
+
+use Rabbit\Cpanel\BaseController;
+use $NAMESPACE$\Requests\$REQUEST_NAME$;
+
+class $CONTROLLER_NAME$ extends BaseController
+{
+
+    /**
+     * The request implementation
+     *
+     * @var $REQUEST_NAME$
+     */
+    protected $request;
+
+    /**
+     * Create a new request instance.
+     *
+     * @param $REQUEST_NAME$ $request
+     */
+    public function __construct($REQUEST_NAME$ $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * Display a listing
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return \View::make('$RESOURCE_VIEW$.index');
+    }
+
+    /**
+     * Show the form for creating
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        $form = new \stdClass();
+        $form->action = \URL::route('$RESOURCE_ROUTE$.store');
+        $form->method = 'post';
+        $form->submit = 'Create';
+
+        $$RESOURCE_CAMEL_CASE$ = new \EmptyClass();
+        // $$RESOURCE_CAMEL_CASE$->field_name = 'value';
+
+        $data['form'] = $form;
+        $data['$RESOURCE$'] = $$RESOURCE_CAMEL_CASE$;
+
+        return \View::make('$RESOURCE_VIEW$.form', $data);
+    }
+
+    /**
+     * Store a newly created
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $$RESOURCE_CAMEL_CASE$ = new $MODEL_NAME$();
+        $this->_saveData($$RESOURCE_CAMEL_CASE$);
+
+        \Notification::success(\Lang::get('cpanel::msg.success'));
+
+		return \Redirect::back();
+	}
+
+    /**
+     * Display the specified
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $$RESOURCE$ = $MODEL_NAME$::findOrFail($id);
+
+		return \View::make('$RESOURCE_VIEW$.show', compact('$RESOURCE$'));
+	}
+
+    /**
+     * Show the form for editing the specified
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $form = new \stdClass();
+        $form->action = \URL::route('$RESOURCE_ROUTE$.update', $id);
+        $form->method = 'put';
+        $form->submit = 'Update';
+
+        $$RESOURCE_CAMEL_CASE$ = $MODEL_NAME$::findOrFail($id);
+        // $$RESOURCE_CAMEL_CASE$->field_name = 'value';
+
+        $data['form'] = $form;
+        $data['$RESOURCE$'] = $$RESOURCE_CAMEL_CASE$;
+
+        return \View::make('$RESOURCE_VIEW$.form', $data);
+	}
+
+    /**
+     * Update the specified
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        $$RESOURCE_CAMEL_CASE$ = $MODEL_NAME$::findOrFail($id);
+        $this->_saveData($$RESOURCE_CAMEL_CASE$);
+
+        \Notification::success(\Lang::get('cpanel::msg.success'));
+
+		return \Redirect::route('$RESOURCE_ROUTE$.index');
+	}
+
+    /**
+     * Remove the specified
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $$RESOURCE_CAMEL_CASE$ = $MODEL_NAME$::findOrFail($id);
+        $$RESOURCE_CAMEL_CASE$->delete();
+
+        \Notification::success(\Lang::get('cpanel::msg.success'));
+
+		return \Redirect::route('$RESOURCE_ROUTE$.index');
+	}
+
+    /**
+     * Get datatable
+     *
+     * @return mixed
+     */
+    public function datatable()
+    {
+        return $this->request->datatable();
+    }
+
+    /**
+     * Validator
+     *
+     * @return string
+     */
+    public function validator()
+    {
+        return $this->request->validator();
+    }
+
+    /**
+     * Save data
+     *
+     * @param $data
+     */
+    private function _saveData($$RESOURCE_CAMEL_CASE$)
+    {
+        $inputs = (object)\Input::all();
+
+        $RESOURCE_SAVE_DATA$
+        $$RESOURCE_CAMEL_CASE$->save();
+    }
+
+}

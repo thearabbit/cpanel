@@ -1,0 +1,18 @@
+@extends(Config::get('cpanel::layout.master'))
+
+@section('css')
+@stop
+
+@section('toolbar')
+    {{ Button::primary('Add New')->asLinkTo(URL::route('$RESOURCE_ROUTE$.create')) }}
+@stop
+
+@section('content')
+    {{ Datatable::table()
+                   ->addColumn($DATA_TABLE_FIELDS_LABEL$, 'Action')
+                   ->setUrl(route('$RESOURCE_DATATABLE_ROUTE$'))
+                   ->render() }}
+@stop
+
+@section('js')
+@stop

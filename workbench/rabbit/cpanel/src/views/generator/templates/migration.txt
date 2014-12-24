@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class $CLASS$ extends Migration
+{
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		$UP$
+
+        // Call seeder
+        $this->seeder();
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('$TABLE$');
+	}
+
+    /**
+     * Seeder
+     *
+     * @return void
+     */
+    private function seeder()
+    {
+//        DB::table('$TABLE$')->insert(
+//            [
+//                [
+//                    'field_name' => 'data',
+//                    'created_at' => new DateTime(),
+//                    'updated_at' => new DateTime(),
+//                ],
+//            ]
+//        );
+    }
+
+}

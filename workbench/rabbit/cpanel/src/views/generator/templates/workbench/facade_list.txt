@@ -1,0 +1,13 @@
+<?php
+namespace $NAMESPACE$\Facades;
+
+use Illuminate\Support\Facades\Facade;
+
+class $PACKAGE_UC_WORDS$List extends Facade
+{
+
+    protected static function getFacadeAccessor()
+    {
+        return '$PACKAGE$-list';
+    }
+}

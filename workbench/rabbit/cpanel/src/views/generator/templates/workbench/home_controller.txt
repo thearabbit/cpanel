@@ -1,0 +1,19 @@
+<?php
+namespace $NAMESPACE$;
+
+use Rabbit\Cpanel\BaseController;
+
+class HomeController extends BaseController
+{
+    /**
+     * Home page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $data = 'Welcome To $PACKAGE_UC_WORDS$ System !';
+
+        return \View::make('$PACKAGE$::home.index', compact('data'));
+    }
+}

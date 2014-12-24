@@ -1,0 +1,5 @@
+Schema::create('$TABLE$', function(Blueprint $table)
+		{
+			$FIELDS$
+			$table->timestamps();
+		});

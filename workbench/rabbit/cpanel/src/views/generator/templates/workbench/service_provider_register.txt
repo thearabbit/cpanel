@@ -1,0 +1,12 @@
+	public function register()
+	{
+		// Package list
+		$this->app->bind('$PACKAGE$-list', function () {
+			return new $PACKAGE_UC_WORDS$List();
+		});
+		// Package list facade
+		$this->app->booting(function () {
+			$loader = AliasLoader::getInstance();
+			$loader->alias('$PACKAGE_UC_WORDS$List', '$NAMESPACE$\Facades\$PACKAGE_UC_WORDS$List');
+		});
+	}

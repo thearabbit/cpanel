@@ -1,0 +1,50 @@
+<?php namespace $NAMESPACE$\Requests;
+
+use $NAMESPACE$\$MODEL_NAME$;
+
+class $REQUEST_NAME$
+{
+
+    /**
+     * Get datatable
+     *
+     * @return mixed
+     */
+    public function datatable()
+    {
+        $data = $MODEL_NAME$::orderBy('id');
+
+        return \Datatable::query($data)
+            ->showColumns($DATA_TABLE_FIELDS$)
+            ->addColumn(
+                'action',
+                function ($model) {
+                    return \Action::make()
+                        ->edit(\URL::route('$RESOURCE_ROUTE$.edit', $model->id))
+                        ->delete(\URL::route('$RESOURCE_ROUTE$.destroy', $model->id), $model->id)
+                        ->show(\URL::route('$RESOURCE_ROUTE$.show', $model->id))->get();
+                }
+            )
+            ->searchColumns($DATA_TABLE_FIELDS$)
+            ->orderColumns($DATA_TABLE_FIELDS$)
+            ->make();
+    }
+
+    /**
+     * Validation
+     *
+     * @return string
+     */
+    public function validator()
+    {
+        $rules = [
+            // 'field_name' => 'rules'
+        ];
+
+        $validator = \Validator::make(\Input::all(), $rules);
+        $bvValid = $validator->passes();
+        $bvMessage = implode('<br>', $validator->messages()->all());
+
+        return json_encode(['valid' => $bvValid, 'message' => $bvMessage]);
+    }
+}

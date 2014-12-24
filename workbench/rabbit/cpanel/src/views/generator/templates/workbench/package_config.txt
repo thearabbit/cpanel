@@ -1,0 +1,4 @@
+'$PACKAGE$' => [
+        'name' => '$PACKAGE_UC_WORDS$ System',
+    ],
+    /*** $PACKAGE_CONFIG$ ***/

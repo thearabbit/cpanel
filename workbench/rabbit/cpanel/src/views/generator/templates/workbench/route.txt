@@ -1,0 +1,34 @@
+<?php
+/*
+|------------------------------
+| Filter routes: auth, setting
+|------------------------------
+*/
+// Home page
+Route::group(['prefix' => '$PACKAGE$', 'before' => 'auth.cpanel|setting.cpanel', 'namespace' => '$NAMESPACE$'], function () {
+
+    Route::get('home', ['as' => '$PACKAGE$.home.index', 'uses' => 'HomeController@index']);
+
+});
+
+/*
+|---------------------------------------------
+| Filter routes: auth, setting and permission
+|---------------------------------------------
+*/
+Route::group(['prefix' => '$PACKAGE$', 'before' => 'auth.cpanel|setting.cpanel|permission.cpanel', 'namespace' => '$NAMESPACE$'], function () {
+
+    /*** $ROUTE_RESOURCE$ ***/
+
+});
+
+/*
+|----------------------------------------
+| No filter routes
+|----------------------------------------
+*/
+Route::group(['prefix' => '$PACKAGE$', 'namespace' => '$NAMESPACE$'], function () {
+
+    /*** $ROUTE_REQUEST$ ***/
+
+});

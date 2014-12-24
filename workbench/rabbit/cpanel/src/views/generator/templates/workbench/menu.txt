@@ -1,0 +1,16 @@
+<?php
+
+return [
+    // Home
+    'Home' => [
+        'icon' => 'home',
+        'url' => URL::route('$PACKAGE$.home.index'),
+    ],
+    // Manage Data
+    'Manage Data' => [
+        'icon' => 'suitcase',
+        'tree' => [
+            /*** $MENU$ ***/
+        ],
+    ]
+];

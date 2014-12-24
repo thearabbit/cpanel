@@ -1,0 +1,4 @@
+// $RESOURCE_TITLE$ datatable
+    Route::get('datatable/$RESOURCE$', ['as' => '$PACKAGE$.datatable.$RESOURCE$', 'uses' => '$CONTROLLER_NAME$@datatable']);
+    // $RESOURCE_TITLE$ validator
+    Route::post('validator/$RESOURCE$', ['as' => '$PACKAGE$.validator.$RESOURCE$', 'uses' => '$CONTROLLER_NAME$@validator']);

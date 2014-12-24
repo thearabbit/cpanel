@@ -1,0 +1,17 @@
+// $RESOURCE_TITLE$
+Breadcrumbs::register('$RESOURCE_ROUTE$.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('cpanel.home.index');
+    $breadcrumbs->push('$RESOURCE_TITLE$', route('$RESOURCE_ROUTE$.index'));
+});
+Breadcrumbs::register('$RESOURCE_ROUTE$.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('$RESOURCE_ROUTE$.index');
+    $breadcrumbs->push('Add New', route('$RESOURCE_ROUTE$.create'));
+});
+Breadcrumbs::register('$RESOURCE_ROUTE$.show', function ($breadcrumbs) {
+    $breadcrumbs->parent('$RESOURCE_ROUTE$.index');
+    $breadcrumbs->push('Show', route('$RESOURCE_ROUTE$.show'));
+});
+Breadcrumbs::register('$RESOURCE_ROUTE$.edit', function ($breadcrumbs) {
+    $breadcrumbs->parent('$RESOURCE_ROUTE$.index');
+    $breadcrumbs->push('Edit', route('$RESOURCE_ROUTE$.edit'));
+});
