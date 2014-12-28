@@ -11,8 +11,8 @@ class LoginController extends BaseController
     public function getLogin()
     {
         // Check security file, ip and expire date
-        $security = new \Rabbit\Cpanel\SecurityController();
-        $security->check(true, false, false);
+//        $security = new \Rabbit\Cpanel\SecurityController();
+//        $security->check(true, false, false);
 
         return \View::make('cpanel::login.form');
     }
