@@ -1,3 +1,10 @@
+/* Content */
+.content {
+    padding: 20px 15px 20px 15px;
+    background: #f9f9f9;
+    overflow: inherit;
+}
+
 /*
  |---------------------------------
  | Select2
@@ -65,7 +72,7 @@
 |---------------------------------
 */
 .dataTables_wrapper {
-    margin-bottom: 100px;
+    margin-bottom: auto;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
