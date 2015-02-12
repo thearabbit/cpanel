@@ -51,9 +51,13 @@ $(function() {
         var bf = box.find(".box-body, .box-footer");
         if (!box.hasClass("collapsed-box")) {
             box.addClass("collapsed-box");
+            //Convert minus into plus
+            $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
             bf.slideUp();
         } else {
             box.removeClass("collapsed-box");
+            //Convert plus into minus
+            $(this).children(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
             bf.slideDown();
         }
     });
@@ -129,10 +133,10 @@ $(function() {
      * iCheck plugin in.
      * You can find the documentation at http://fronteed.com/iCheck/
      */
-    $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
-    });
+    //$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+    //    checkboxClass: 'icheckbox_minimal',
+    //    radioClass: 'iradio_minimal'
+    //});
 
 });
 function fix_sidebar() {
