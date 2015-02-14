@@ -17,21 +17,21 @@ class GeneratorController extends BaseController
         $packageUcwords = ucwords(str_replace('_', ' ', $package));
         $namespace = \UString::toPascalCase($bench) . '\\' . \UString::toPascalCase($package);
 
-        $path = base_path('workbench\\' . $bench . '\\' . $package . '\src');
+        $path = base_path('workbench/' . $bench . '/' . $package . '/src');
 
         // Run workbench
         \Artisan::call('workbench', ['package' => $bench . '/' . $package, '--resources' => true]);
 
         // Gen view home
-        $viewDirectory = $path . '\views\home';
+        $viewDirectory = $path . '/views/home';
         \File::makeDirectory($viewDirectory);
-        $viewHome = $viewDirectory . '\index.blade.php';
+        $viewHome = $viewDirectory . '/index.blade.php';
         $tmpViewHome = \File::get(\Config::get('cpanel::path.template.bench.view_home'));
         \File::put($viewHome, $tmpViewHome);
 
         // Gen home controller
-        $controllerDirectory = $path . '\controllers';
-        $controllerFile = $controllerDirectory . '\HomeController.php';
+        $controllerDirectory = $path . '/controllers';
+        $controllerFile = $controllerDirectory . '/HomeController.php';
         $tmpController = \File::get(\Config::get('cpanel::path.template.bench.home_controller'));
         $contentController = str_replace(
             ['$NAMESPACE$', '$PACKAGE_UC_WORDS$', '$PACKAGE$'],
@@ -41,7 +41,7 @@ class GeneratorController extends BaseController
         \File::put($controllerFile, $contentController);
 
         // Gen route
-        $routesFile = $path . '\routes.php';
+        $routesFile = $path . '/routes.php';
         $tmpRoutes = \File::get(\Config::get('cpanel::path.template.bench.route'));
         $contentRoutes = str_replace(
             ['$NAMESPACE$', '$PACKAGE$'],
@@ -51,7 +51,7 @@ class GeneratorController extends BaseController
         \File::put($routesFile, $contentRoutes);
 
         // Gen breadcrumb
-        $breadcrumbsFile = $path . '\breadcrumbs.php';
+        $breadcrumbsFile = $path . '/breadcrumbs.php';
         $tmpBreadcrumbs = \File::get(\Config::get('cpanel::path.template.bench.breadcrumb'));
         $contentBreadcrumbs = str_replace(
             ['$PACKAGE$'],
@@ -61,7 +61,7 @@ class GeneratorController extends BaseController
         \File::put($breadcrumbsFile, $contentBreadcrumbs);
 
         // Gen menu
-        $menuFile = $path . '\config\menu.php';
+        $menuFile = $path . '/config/menu.php';
         $tmpMenu = \File::get(\Config::get('cpanel::path.template.bench.menu'));
         $contentMenu = str_replace(
             ['$PACKAGE$'],
@@ -71,41 +71,41 @@ class GeneratorController extends BaseController
         \File::put($menuFile, $contentMenu);
 
         // Gen permission
-        $permissionFile = $path . '\config\permission.php';
+        $permissionFile = $path . '/config/permission.php';
         $tmpPermission = \File::get(\Config::get('cpanel::path.template.bench.permission'));
         \File::put($permissionFile, $tmpPermission);
 
         // Gen empty directory
-        $emptyDirectory = $path . '\\' . $benchUcwords . '\\' . $packageUcwords;
-        \File::makeDirectory($path . '\models');
-        \File::makeDirectory($emptyDirectory . '\Requests');
-        \File::makeDirectory($emptyDirectory . '\Libraries');
-        \File::makeDirectory($emptyDirectory . '\Facades');
+        $emptyDirectory = $path . '/' . $benchUcwords . '/' . $packageUcwords;
+        \File::makeDirectory($path . '/models');
+        \File::makeDirectory($emptyDirectory . '/Requests');
+        \File::makeDirectory($emptyDirectory . '/Libraries');
+        \File::makeDirectory($emptyDirectory . '/Facades');
 
-        \File::put($path . '\models\.gitkeep', '');
-        \File::put($emptyDirectory . '\Requests\.gitkeep', '');
+        \File::put($path . '/models/.gitkeep', '');
+        \File::put($emptyDirectory . '/Requests/.gitkeep', '');
 
-        \File::put($emptyDirectory . '\Libraries\.gitkeep', '');
+        \File::put($emptyDirectory . '/Libraries/.gitkeep', '');
         $getPackageList = \File::get(\Config::get('cpanel::path.template.bench.package_list'));
         $contentPackageList = str_replace(
             ['$NAMESPACE$', '$PACKAGE_UC_WORDS$'],
             [$namespace, $packageUcwords],
             $getPackageList
         );
-        \File::put($emptyDirectory . '\Libraries\\'.$packageUcwords.'List.php', $contentPackageList);
+        \File::put($emptyDirectory . '/Libraries/'.$packageUcwords.'List.php', $contentPackageList);
 
-        \File::put($emptyDirectory . '\Facades\.gitkeep', '');
+        \File::put($emptyDirectory . '/Facades/.gitkeep', '');
         $getFacadeList = \File::get(\Config::get('cpanel::path.template.bench.facade_list'));
         $contentFacadeList = str_replace(
             ['$NAMESPACE$', '$PACKAGE_UC_WORDS$', '$PACKAGE$'],
             [$namespace, $packageUcwords, $package],
             $getFacadeList
         );
-        \File::put($emptyDirectory . '\Facades\\'.$packageUcwords.'List.php', $contentFacadeList);
+        \File::put($emptyDirectory . '/Facades/'.$packageUcwords.'List.php', $contentFacadeList);
 
         // Autoload controllers and models directory on composer.json
         $tmpautoloadComposer = \File::get(\Config::get('cpanel::path.template.bench.composer'));
-        $autoloadComposerFile = base_path('workbench\\' . $bench . '\\' . $package . '\composer.json');
+        $autoloadComposerFile = base_path('workbench/' . $bench . '/' . $package . '/composer.json');
         $getAutoloadComposerFile = \File::get($autoloadComposerFile);
         $contentAutoloadComposerFile = str_replace(
             ['"src/migrations"'],
@@ -121,7 +121,7 @@ class GeneratorController extends BaseController
             [$package, $packageUcwords],
             $tmpPackageConfig
         );
-        $packageConfigFile = base_path('workbench\rabbit\cpanel\src\config\package.php');
+        $packageConfigFile = base_path('workbench/rabbit/cpanel/src/config/package.php');
         $getPackageConfigFile = \File::get($packageConfigFile);
         $contentGetPackageConfig = str_replace(
             ['/*** $PACKAGE_CONFIG$ ***/'],
@@ -153,7 +153,7 @@ class GeneratorController extends BaseController
             $tmpUseServiceProvider
         );
 
-        $serviceProviderFile = $emptyDirectory . '\\' . $packageUcwords . 'ServiceProvider.php';
+        $serviceProviderFile = $emptyDirectory . '/' . $packageUcwords . 'ServiceProvider.php';
         $getServiceProviderFile = \File::get($serviceProviderFile);
         $boot = "\$this->package('" . $bench . "/" . $package . "');";
         $register = '	public function register()
@@ -245,7 +245,7 @@ class GeneratorController extends BaseController
         $data->resourcePrefix = \Input::get('resource_prefix');
         $data->resource = \Input::get('resource');
 
-        $data->path = base_path('workbench\\' . $data->vendor . '\\' . $data->package . '\src');
+        $data->path = base_path('workbench/' . $data->vendor . '/' . $data->package . '/src');
         $data->namespace = \UString::toPascalCase($data->vendor) . '\\' . \UString::toPascalCase($data->package);
         $data->resourcePascalCase = \UString::toPascalCase($data->resource);
         $data->resourceCamelCase = \UString::toCamelCase($data->resource);
@@ -258,7 +258,7 @@ class GeneratorController extends BaseController
         $data->modelName = $data->resourcePascalCase . 'Model';
         $data->controllerName = $data->resourcePascalCase . 'Controller';
         $data->requestName = $data->resourcePascalCase . 'Request';
-        $data->viewDirectory = $data->path . '\views\\' . $data->resource;
+        $data->viewDirectory = $data->path . '/views/' . $data->resource;
         if (!\File::exists($data->viewDirectory)) {
             \File::makeDirectory($data->viewDirectory);
         }
@@ -329,7 +329,7 @@ class GeneratorController extends BaseController
             [$data->namespace, $data->modelName, $data->resourcePrefix . $data->resource],
             $tmp
         );
-        $file = $data->path . '\models\\' . $data->modelName . '.php';
+        $file = $data->path . '/models/' . $data->modelName . '.php';
         \File::put($file, $content);
     }
 
@@ -347,7 +347,7 @@ class GeneratorController extends BaseController
             [$data->namespace, $data->requestName, $data->modelName, $getFields['data_table_field'], $data->resourceRoute],
             $tmp
         );
-        $file = $data->path . '\\' . $data->namespace . '\\Requests\\' . $data->requestName . '.php';
+        $file = $data->path . '/' . $data->namespace . '/Requests/' . $data->requestName . '.php';
         \File::put($file, $content);
     }
 
@@ -360,7 +360,7 @@ class GeneratorController extends BaseController
     {
         $getFields = $this->_createField($data, $prop);
         // Index
-        $viewIndexFile = $data->viewDirectory . '\index.blade.php';
+        $viewIndexFile = $data->viewDirectory . '/index.blade.php';
         $tmpViewIndex = \File::get(\Config::get('cpanel::path.template.view_index'));
         $viewIndexContent = str_replace(
             ['$RESOURCE_ROUTE$', '$RESOURCE_DATATABLE_ROUTE$', '$DATA_TABLE_FIELDS_LABEL$'],
@@ -370,7 +370,7 @@ class GeneratorController extends BaseController
         \File::put($viewIndexFile, $viewIndexContent);
 
         // Show
-        $viewShowFile = $data->viewDirectory . '\show.blade.php';
+        $viewShowFile = $data->viewDirectory . '/show.blade.php';
         $tmpViewShow = \File::get(\Config::get('cpanel::path.template.view_show'));
         $viewShowContent = str_replace(
             ['$SHOW_FIELD$'],
@@ -390,7 +390,7 @@ class GeneratorController extends BaseController
                 $formObjectTab2 .= $value . "\t\t\t";
             }
         }
-        $viewCreateFile = $data->viewDirectory . '\form.blade.php';
+        $viewCreateFile = $data->viewDirectory . '/form.blade.php';
         $tmpViewCreate = \File::get(\Config::get('cpanel::path.template.view_form'));
         $viewCreateContent = str_replace(
             ['$RESOURCE_VALIDATOR_ROUTE$', '$RESOURCE$', '$FORM_OBJECT_TAB1$', '$FORM_OBJECT_TAB2$'],
@@ -436,7 +436,7 @@ class GeneratorController extends BaseController
             ],
             $tmp
         );
-        $file = $data->path . '\controllers\\' . $data->controllerName . '.php';
+        $file = $data->path . '/controllers/' . $data->controllerName . '.php';
         \File::put($file, $content);
     }
 
@@ -479,7 +479,7 @@ class GeneratorController extends BaseController
             ],
             $tmp
         );
-        $file = $data->path . '\migrations\\' . date('Y_m_d_His') . '_create_' . $data->resource . '_table' . '.php';
+        $file = $data->path . '/migrations/' . date('Y_m_d_His') . '_create_' . $data->resource . '_table' . '.php';
         \File::put($file, $content);
     }
 
@@ -505,7 +505,7 @@ class GeneratorController extends BaseController
             $tmpRouteRequest
         );
 
-        $file = $data->path . '\routes.php';
+        $file = $data->path . '/routes.php';
         $tmpOriginalRoute = \File::get($file);
         $content = str_replace(
             ['/*** $ROUTE_RESOURCE$ ***/', '/*** $ROUTE_REQUEST$ ***/'],
@@ -530,7 +530,7 @@ class GeneratorController extends BaseController
             $tmpMenu
         );
 
-        $file = $data->path . '\config\menu.php';
+        $file = $data->path . '/config/menu.php';
         $tmpOriginalMenu = \File::get($file);
         $content = str_replace(
             ['/*** $MENU$ ***/'],
@@ -555,7 +555,7 @@ class GeneratorController extends BaseController
             $tmpPermission
         );
 
-        $file = $data->path . '\config\permission.php';
+        $file = $data->path . '/config/permission.php';
         $tmpOriginalPermission = \File::get($file);
         $content = str_replace(
             ['/*** $PERMISSION$ ***/'],
@@ -579,7 +579,7 @@ class GeneratorController extends BaseController
             [$data->resourceRoute, $data->resourceTitle],
             $tmp
         );
-        $file = $data->path . '\breadcrumbs.php';
+        $file = $data->path . '/breadcrumbs.php';
 //        $file = \Config::get('cpanel::path . store . breadcrumb');
         \File::append($file, $content);
     }
