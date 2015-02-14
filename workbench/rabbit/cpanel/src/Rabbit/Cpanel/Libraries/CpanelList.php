@@ -95,7 +95,7 @@ class CpanelList
         $groups = GroupModel::whereIn('id', $groupId)->orderBy('id')->get();
         $groupsTmp = [];
         foreach ($groups as $list) {
-            $groupsTmp[$list->id] = $list->name . ' | Package: ' . \Config::get('cpanel::package.' . $list->package . '.name');
+            $groupsTmp[$list->id] = $list->name . ' | ' . \Config::get('cpanel::package.' . $list->package . '.name');
         }
 
         $list = $this->selectOne + $groupsTmp;
