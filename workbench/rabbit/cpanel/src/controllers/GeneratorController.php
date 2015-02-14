@@ -4,11 +4,21 @@
 class GeneratorController extends BaseController
 {
 
+    /**
+     * Get bench
+     *
+     * @return \Illuminate\View\View
+     */
     public function getBench()
     {
         return \View::make('cpanel::generator.bench');
     }
 
+    /**
+     * Post bench
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postBench()
     {
         $bench = \Input::get('bench');
@@ -177,9 +187,9 @@ class GeneratorController extends BaseController
     }
 
     /**
-     * Show the form scaffold
+     * Get scaffold
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function getScaffold()
     {
@@ -231,9 +241,9 @@ class GeneratorController extends BaseController
     }
 
     /**
-     * Store a newly created scaffold
+     * Post scaffold
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postScaffold()
     {

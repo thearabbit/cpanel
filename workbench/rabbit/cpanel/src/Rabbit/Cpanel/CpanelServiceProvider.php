@@ -12,7 +12,6 @@ use Rabbit\Cpanel\Libraries\Currency;
 use Rabbit\Cpanel\Libraries\FormProperty;
 use Rabbit\Cpanel\Libraries\IDGenerator;
 use Rabbit\Cpanel\Libraries\PageHeader;
-use Rabbit\Cpanel\Libraries\PageProperty;
 
 class CpanelServiceProvider extends ServiceProvider
 {
